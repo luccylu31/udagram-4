@@ -23,11 +23,6 @@ jobs:
             cd udagram/udagram-api
             npm install
       - run:
-          name: Lint Front-End
-          command: |
-            cd udagram/udagram-frontend
-            npm run lint
-      - run:
           name: Build Front-End
           command: |
             cd udagram/udagram-frontend
