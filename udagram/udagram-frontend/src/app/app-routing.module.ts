@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -9,7 +9,9 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    // loadChildren: './home/home.module#HomePageModule'
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+
   }
 ];
 
@@ -17,6 +19,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppRoutingModule {}

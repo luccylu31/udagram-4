@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -23,6 +23,7 @@ const components = [FeedListComponent, FeedItemComponent, FeedUploadComponent, F
   declarations: components,
   exports: components,
   entryComponents: entryComponents,
-  providers: [FeedProviderService]
+  providers: [FeedProviderService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FeedModule {}

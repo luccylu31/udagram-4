@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -24,6 +24,7 @@ const components = [...entryComponents];
   entryComponents: entryComponents,
   declarations: components,
   exports: components,
-  providers: []
+  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Add this line to fix the error
 })
 export class AuthModule {}
