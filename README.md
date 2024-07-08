@@ -6,25 +6,41 @@ Udagram is a full-stack application, including front-end and back-end. The appli
 
 ## Link to Hosted Frontend Application
 
-[Frontend Application](https://s3.amazonaws.com/user3354372-udagram/index.html)
+[Frontend Application](https://user3354372-udagram.s3.amazonaws.com/index.html)
 
 ## Screenshots
 
 ### Last Successful CircleCi Build
 
-![CircleCI Build](screenshots/circleci_build.png)
+![CircleCI Build](screenshots/CircleCI_overview.png)
+
+### Build Stage
+
+![Build Stage](screenshots/Build_stage.png)
+
+### Deploy Stage
+
+![Deploy Stage](screenshots/Deploy_stage.png)
 
 ### AWS RDS Overview
 
-![RDS Overview](screenshots/rds_overview.png)
+![RDS Overview](screenshots/RDS.png)
 
 ### AWS Elastic Beanstalk Deployment
 
-![Elastic Beanstalk Deployment](screenshots/eb_deployment.png)
+![Elastic Beanstalk Deployment](screenshots/ElasticBeanstalk.png)
 
 ### AWS S3 Web Hosting
 
 ![S3 Web Hosting](screenshots/s3_web_hosting.png)
+
+### Endpoint
+
+![Endpoint](screenshots/Endpoint.png)
+
+### User interface
+
+![User interface](screenshots/UserInterface.png)
 
 ### Dependencies
 
