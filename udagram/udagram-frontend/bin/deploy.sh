@@ -1,2 +1,2 @@
-aws s3 cp --recursive ./www/ s3://user3354372-udagram/ --profile default
+aws s3 cp --recursive ./www/ s3://user3354372-udagram/ 
 aws s3 cp --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./www/index.html s3://user3354372-udagram/
