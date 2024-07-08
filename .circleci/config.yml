@@ -8,6 +8,7 @@ jobs:
   build:
     docker:
       - image: "cimg/node:14.15"
+    working_directory: ~/repo
     steps:
       - node/install:
           node-version: "14.15"
@@ -44,13 +45,14 @@ jobs:
               exit 1
             fi
       - persist_to_workspace:
-          root: udagram/udagram-frontend
+          root: ~/repo/udagram/udagram-frontend
           paths:
             - www
 
   deploy:
     docker:
       - image: "cimg/base:stable"
+    working_directory: ~/repo
     steps:
       - node/install:
           node-version: "14.15"
@@ -58,11 +60,11 @@ jobs:
       - aws-cli/setup
       - checkout
       - attach_workspace:
-          at: /workspace
+          at: ~/repo/udagram/udagram-frontend
       - run:
           name: Deploy Front-End
           command: |
-            cd /workspace/udagram/udagram-frontend
+            cd ~/repo/udagram/udagram-frontend
             if [ -d "./www" ]; then
               aws s3 cp --recursive ./www/ s3://user3354372-udagram/ --profile default
               aws s3 cp --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./www/index.html s3://user3354372-udagram/ --profile default
@@ -73,7 +75,7 @@ jobs:
       - run:
           name: Deploy API
           command: |
-            cd udagram/udagram-api
+            cd ~/repo/udagram/udagram-api
             eb init -p nodejs --region us-east-1
             eb list --profile default
             eb use udagram-api-dev --profile default
