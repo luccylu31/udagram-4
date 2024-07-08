@@ -32,6 +32,17 @@ jobs:
           command: |
             cd udagram/udagram-api
             npm run build
+      - run:
+          name: Check if Front-End Build Directory Exists
+          command: |
+            cd udagram/udagram-frontend
+            if [ -d "./www" ]; then
+              echo "Build directory ./www exists."
+              ls -la ./www
+            else
+              echo "Build directory ./www does not exist."
+              exit 1
+            fi
 
   deploy:
     docker:
@@ -46,8 +57,13 @@ jobs:
           name: Deploy Front-End
           command: |
             cd udagram/udagram-frontend
-            aws s3 cp --recursive ./www/ s3://user3354372-udagram/ --profile default
-            aws s3 cp --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./www/index.html s3://user3354372-udagram/ --profile default
+            if [ -d "./www" ]; then
+              aws s3 cp --recursive ./www/ s3://user3354372-udagram/ --profile default
+              aws s3 cp --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./www/index.html s3://user3354372-udagram/ --profile default
+            else
+              echo "Build directory ./www does not exist."
+              exit 1
+            fi
       - run:
           name: Deploy API
           command: |
