@@ -43,6 +43,10 @@ jobs:
               echo "Build directory ./www does not exist."
               exit 1
             fi
+      - persist_to_workspace:
+          root: udagram/udagram-frontend
+          paths:
+            - www
 
   deploy:
     docker:
@@ -53,10 +57,12 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
+      - attach_workspace:
+          at: /workspace
       - run:
           name: Deploy Front-End
           command: |
-            cd udagram/udagram-frontend
+            cd /workspace/udagram/udagram-frontend
             if [ -d "./www" ]; then
               aws s3 cp --recursive ./www/ s3://user3354372-udagram/ --profile default
               aws s3 cp --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./www/index.html s3://user3354372-udagram/ --profile default
