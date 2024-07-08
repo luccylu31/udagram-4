@@ -76,7 +76,7 @@ jobs:
           name: Deploy API
           command: |
             cd ~/repo/udagram/udagram-api
-            eb init -p nodejs --region us-east-1
+            eb init -p "node.js 14 running on 64bit Amazon Linux 2" --region us-east-1
             eb list --profile default
             eb use udagram-api-dev --profile default
             eb deploy --profile default
