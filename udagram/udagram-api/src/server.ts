@@ -3,17 +3,17 @@ import cors from 'cors';
 import express from "express";
 import { sequelize } from "./sequelize";
 import { IndexRouter } from "./controllers/v0/index.router";
-import bodyParser from "body-parser";
 import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
 
-(async () => {
-  dotenv.config();
+dotenv.config();
 
+(async () => {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
+    process.exit(1); 
   }
 
   await sequelize.addModels(V0_FEED_MODELS);
@@ -25,20 +25,24 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
   const app = express();
   const port = process.env.PORT || 8080;
 
-  app.use(bodyParser.json());
+  app.use(express.json());
 
   // CORS Configuration
+  const allowedOrigins = ['https://user3354372-udagram.s3.amazonaws.com']; 
+
   app.use(cors({
-    origin: '*', 
-    methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-    allowedHeaders: [
-      'Origin', 'X-Requested-With', 'Content-Type', 'Accept',
-      'X-Access-Token', 'Authorization', 'Access-Control-Allow-Origin',
-      'Access-Control-Allow-Headers', 'Access-Control-Allow-Methods'
-    ],
-    preflightContinue: false,
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'], 
+    credentials: true, 
   }));
 
+  // Sử dụng route từ IndexRouter
   app.use("/api/v0/", IndexRouter);
 
   // Root URI call
