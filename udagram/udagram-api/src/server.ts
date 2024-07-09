@@ -28,7 +28,7 @@ dotenv.config();
   app.use(express.json());
 
   // CORS Configuration
-  const allowedOrigins = ['https://user3354372-udagram.s3.amazonaws.com']; 
+  const allowedOrigins = ['https://user3354372-udagram.s3.amazonaws.com'];
 
   app.use(cors({
     origin: function (origin, callback) {
@@ -38,8 +38,8 @@ dotenv.config();
         callback(new Error('Not allowed by CORS'));
       }
     },
-    methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'], 
-    credentials: true, 
+    methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    credentials: true,
   }));
 
   app.use("/api/v0/", IndexRouter);
