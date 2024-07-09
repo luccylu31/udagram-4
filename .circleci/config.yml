@@ -38,6 +38,10 @@ jobs:
           paths:
             - udagram-frontend/www
             - udagram-api/www
+    filters:
+      branches:
+        only:
+          - main
 
   deploy:
     docker:
