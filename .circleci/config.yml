@@ -52,6 +52,11 @@ jobs:
       - attach_workspace:
           at: ~/repo/udagram
       - run:
+          name: Set Environment Variables
+          command: |
+            cd ~/repo/udagram/udagram-api
+            eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD DB_PORT=$DB_PORT AWS_REGION=$AWS_REGION AWS_PROFILE=$AWS_PROFILE --profile default
+      - run:
           name: Deploy Front-End
           command: |
             cd ~/repo/udagram/udagram-frontend
