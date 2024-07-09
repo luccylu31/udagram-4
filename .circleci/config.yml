@@ -52,15 +52,12 @@ jobs:
       - attach_workspace:
           at: ~/repo/udagram
       - run:
-          name: Initialize Elastic Beanstalk
-          command: |
-            cd ~/repo/udagram/udagram-api
-            eb init udagram-api --platform node.js-14 --region us-east-1 --profile default
-      - run:
           name: Set Environment Variables
           command: |
             cd ~/repo/udagram/udagram-api
-            ./deploy.sh
+            eb init udagram-api --platform node.js-14 --region us-east-1 --profile default
+            eb use udagram-api-env --profile default
+            eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD DB_PORT=$DB_PORT AWS_REGION=$AWS_REGION AWS_PROFILE=$AWS_PROFILE --profile default
       - run:
           name: Deploy Front-End
           command: |
