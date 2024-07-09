@@ -42,7 +42,6 @@ dotenv.config();
     credentials: true, 
   }));
 
-  // Sử dụng route từ IndexRouter
   app.use("/api/v0/", IndexRouter);
 
   // Root URI call

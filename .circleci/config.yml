@@ -38,10 +38,6 @@ jobs:
           paths:
             - udagram-frontend/www
             - udagram-api/www
-    filters:
-      branches:
-        only:
-          - main
 
   deploy:
     docker:
@@ -94,7 +90,11 @@ jobs:
 workflows:
   udagram:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       - hold:
           type: approval
           requires:
