@@ -60,7 +60,7 @@ jobs:
           name: Set Environment Variables
           command: |
             cd ~/repo/udagram/udagram-api
-            ./deploy.h
+            ./deploy.sh
       - run:
           name: Deploy Front-End
           command: |
