@@ -49,20 +49,6 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
-      # Deploy to Elastic Beanstalk
-      - aws-elasticbeanstalk/deploy-application:
-          name: Udagram-api-env
-          command: deploy
-          env-vars:
-            POSTGRES_USERNAME: $POSTGRES_USERNAME
-            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-            POSTGRES_HOST: $POSTGRES_HOST
-            POSTGRES_DB: $POSTGRES_DB
-            AWS_BUCKET: $AWS_BUCKET
-            AWS_REGION: $AWS_REGION
-            AWS_PROFILE: $AWS_PROFILE
-            JWT_SECRET: $JWT_SECRET
-            URL: $URL
       - attach_workspace:
           at: ~/repo/udagram
       - run:
@@ -71,6 +57,8 @@ jobs:
             cd ~/repo/udagram/udagram-api
             eb init udagram-api --platform node.js-14 --region us-east-1 --profile default
             eb use udagram-api-env --profile default
+            eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD POSTGRES_HOST=$POSTGRES_HOST POSTGRES_DB=$POSTGRES_DB AWS_BUCKET=$AWS_BUCKET AWS_REGION=$AWS_REGION AWS_PROFILE=$AWS_PROFILE JWT_SECRET=$JWT_SECRET URL=$URL --profile default
+
       - run:
           name: Deploy Front-End
           command: |
