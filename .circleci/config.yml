@@ -52,6 +52,11 @@ jobs:
       - attach_workspace:
           at: ~/repo/udagram
       - run:
+          name: Initialize Elastic Beanstalk
+          command: |
+            cd ~/repo/udagram/udagram-api
+            eb init udagram-api --platform node.js-14 --region us-east-1 --profile default
+      - run:
           name: Set Environment Variables
           command: |
             cd ~/repo/udagram/udagram-api
@@ -72,8 +77,6 @@ jobs:
           command: |
             cd ~/repo/udagram/udagram-api
             if [ -d "./www" ]; then
-              eb init udagram-api --platform node.js-14 --region us-east-1 --profile default
-              eb list --profile default
               eb use udagram-api-env --profile default
               eb deploy --profile default
             else
