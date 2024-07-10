@@ -27,17 +27,9 @@ dotenv.config();
 
   app.use(express.json());
 
-  // CORS Configuration
-  const allowedOrigins = ['*'];
-
+  // CORS Configuration to allow all origins
   app.use(cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: '*',
     methods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   }));
@@ -48,6 +40,7 @@ dotenv.config();
   app.get("/", async (req, res) => {
     res.send("/api/v0/");
   });
+
 
   // Start the Server
   app.listen(port, () => {
