@@ -28,7 +28,7 @@ dotenv.config();
   app.use(express.json());
 
   // CORS Configuration
-  const allowedOrigins = ['https://user3354372-udagram.s3.amazonaws.com'];
+  const allowedOrigins = ['*'];
 
   app.use(cors({
     origin: function (origin, callback) {
