@@ -36,7 +36,7 @@ Udagram is a full-stack application, including front-end and back-end. The appli
 
 ### AWS S3 Web Hosting
 
-![S3 Web Hosting](screenshots/s3_web_hosting.png)
+![S3 Web Hosting](screenshots/S3.png)
 
 ### Endpoint
 
