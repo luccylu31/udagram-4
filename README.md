@@ -22,6 +22,10 @@ Udagram is a full-stack application, including front-end and back-end. The appli
 
 ![Deploy Stage](screenshots/Deploy_stage.png)
 
+### Configure CircleCi Environment
+
+![CircleCI Environment](screenshots/CirCLECI_Environment.png)
+
 ### AWS RDS Overview
 
 ![RDS Overview](screenshots/RDS.png)
