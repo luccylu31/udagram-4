@@ -6,7 +6,7 @@ Udagram is a full-stack application, including front-end and back-end. The appli
 
 ## Link to Hosted Frontend Application
 
-[Frontend Application](https://user3354372-udagram.s3.amazonaws.com/index.html)
+[Frontend Application](http://user3354372-udagram.s3-website-us-east-1.amazonaws.com)
 
 ## Screenshots
 
